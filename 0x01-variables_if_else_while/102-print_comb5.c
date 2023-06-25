@@ -1,5 +1,5 @@
 #include<stdio.h>
-
+//all possible combinations of two two-digit numbers
 int main(void)
 {
 	int i, j;
