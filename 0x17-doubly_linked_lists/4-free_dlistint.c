@@ -1,24 +1,22 @@
-#include "main.h"
+#include "lists.h"
 
 /**
- * clear_bit - sets the value of a bit to 0.
- * at a given index.
- * @n: pointer of an unsigned long int.
- * @index: index of the bit.
+ * free_dlistint - frees a dlistint_t list
  *
- * Return: 1 if it worked, -1 if it didn't.
+ * @head: head of the list
+ * Return: no return
  */
-int clear_bit(unsigned long int *n, unsigned int index)
+void free_dlistint(dlistint_t *head)
 {
-	unsigned int m;
+	dlistint_t *tmp;
 
-	if (index > 63)
-		return (-1);
+	if (head != NULL)
+		while (head->prev != NULL)
+			head = head->prev;
 
-	m = 1 << index;
-
-	if (*n & m)
-		*n ^= m;
-
-	return (1);
+	while ((tmp = head) != NULL)
+	{
+		head = head->next;
+		free(tmp);
+	}
 }
